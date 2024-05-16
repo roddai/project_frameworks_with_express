@@ -12,6 +12,19 @@ class Controlador {
         console.log(error);
       })
   }
+
+  removeProduto(request, response) {
+    const { prod_id } = request.body;
+
+    db.where({ prod_id: prod_id })
+      .del()
+      .table("produto")
+      .then(() => {
+        response.json({ message: "Produto removido!" });
+      }).catch(error => {
+        console.log(error);
+      })
+  }
 }
 
 module.exports = new Controlador();
